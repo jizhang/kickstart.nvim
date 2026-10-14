@@ -242,6 +242,17 @@ do
   -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
   -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+  -- Copy the current file's relative path to the system clipboard
+  vim.keymap.set('n', '<leader>yp', function()
+    local path = vim.fn.expand '%'
+    if path == '' then
+      vim.notify('Current buffer has no file path', vim.log.levels.WARN)
+      return
+    end
+    vim.fn.setreg('+', path)
+    vim.notify('Copied: ' .. path)
+  end, { desc = 'Copy file [P]ath to clipboard' })
+
   -- [[ Basic Autocommands ]]
   --  See `:help lua-guide-autocommands`
 
@@ -702,13 +713,13 @@ do
     -- clangd = {},
     -- gopls = {},
     pyright = {},
-    -- rust_analyzer = {},
+    rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
     --    https://github.com/pmizio/typescript-tools.nvim
     --
     -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
+    ts_ls = {},
 
     stylua = {}, -- Used to format Lua code
 
