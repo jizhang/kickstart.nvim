@@ -243,7 +243,7 @@ do
   -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
   -- Copy the current file's relative path to the system clipboard
-  vim.keymap.set('n', '<leader>yp', function()
+  vim.keymap.set('n', '<leader>jy', function()
     local path = vim.fn.expand '%'
     if path == '' then
       vim.notify('Current buffer has no file path', vim.log.levels.WARN)
